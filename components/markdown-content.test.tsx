@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 
 import { MarkdownContent } from "@/components/markdown-content";
 
@@ -23,6 +23,30 @@ GET /health
       "/api/1c-upp",
     );
     expect(screen.getByText("GET /health")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Копировать код" })).toBeInTheDocument();
+  });
+
+  it("copies fenced code blocks", async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal("navigator", {
+      clipboard: { writeText },
+    });
+
+    render(
+      <MarkdownContent
+        content={`\`\`\`json
+{ "status": "ok" }
+\`\`\``}
+      />,
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Копировать код" }));
+
+    await waitFor(() => {
+      expect(writeText).toHaveBeenCalledWith('{ "status": "ok" }\n');
+    });
+
+    vi.unstubAllGlobals();
   });
 
   it("renders tables inside a scrollable wrapper", () => {

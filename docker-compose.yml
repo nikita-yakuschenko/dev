@@ -14,6 +14,7 @@ services:
       - DOCS_DB_PATH=/app/data/docs.sqlite
       - GATEWAY_BASE_URL=${GATEWAY_BASE_URL:-}
       - MCP_URL=${MCP_URL:-https://mcp.avgst.ru/mcp}
+      - DOCS_SYNC_ON_START=true
     volumes:
       - portal_data:/app/data
     restart: unless-stopped

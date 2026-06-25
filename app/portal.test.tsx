@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import ApiCatalogPage from "@/app/api/page";
 import UppApiLayout from "@/app/api/1c-upp/layout";
@@ -28,9 +28,22 @@ describe("portal shell and pages", () => {
     expect(screen.queryByText("Внутренний портал")).not.toBeInTheDocument();
   });
 
-  it("renders the sticky header with status and action", () => {
+  it("renders the sticky header with status and action", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          status: "ok",
+          label: "MCP online",
+          detail: "Сервис 1C UPP MCP и база документации доступны.",
+        }),
+      }),
+    );
+
     render(<SiteHeader />);
 
+    expect(await screen.findByText("MCP online")).toBeInTheDocument();
     expect(screen.getByText("Internal Beta")).toBeInTheDocument();
     expect(screen.getByText("Поиск по документации скоро")).toBeInTheDocument();
     expect(screen.getByText("UPP API Draft")).toBeInTheDocument();
@@ -39,6 +52,8 @@ describe("portal shell and pages", () => {
       "/admin/docs",
     );
     expect(screen.queryByRole("button", { name: "Предложить метод" })).not.toBeInTheDocument();
+
+    vi.unstubAllGlobals();
   });
 
   it("wraps content into the dashboard shell", () => {
@@ -122,7 +137,7 @@ describe("portal shell and pages", () => {
       </RootLayout>,
     );
 
-    expect(metadata.title).toBe("AVGST Dev Portal");
+    expect(metadata.title).toBe("dev.avgst");
     expect(metadata.description).toContain("Корпоративный портал");
     expect(markup).toContain('lang="ru"');
     expect(markup).not.toContain('class="dark"');

@@ -10,7 +10,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "AVGST Dev Portal",
+  title: "dev.avgst",
   description: "Корпоративный портал разработчика AVGST.",
   metadataBase: new URL("https://dev.avgst.ru"),
 };

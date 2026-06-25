@@ -1,0 +1,12 @@
+node_modules
+.next
+coverage
+.git
+.gitignore
+*.log
+.env*
+!.env.example
+data
+README.md
+.cursor
+.vscode

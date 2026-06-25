@@ -1,0 +1,13 @@
+# Локальный запуск без Traefik
+# docker compose -f docker-compose.yml -f docker-compose.local.yml up -d --build
+services:
+  portal:
+    environment:
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-local-dev-password}
+    labels: []
+    networks:
+      - default
+
+networks:
+  dokploy-network:
+    external: false

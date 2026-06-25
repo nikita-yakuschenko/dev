@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { IconEdit, IconSearch, IconShieldCheck, IconSparkles } from "@tabler/icons-react";
 
+import { McpStatusIndicator } from "@/components/mcp-status-indicator";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -13,6 +14,7 @@ export function SiteHeader() {
             <IconSparkles className="size-3" />
             Internal Beta
           </Badge>
+          <McpStatusIndicator />
           <div className="hidden h-9 min-w-64 items-center gap-2 rounded-xl border border-border/70 bg-card/65 px-3 text-sm text-muted-foreground shadow-sm md:flex">
             <IconSearch className="size-4" />
             Поиск по документации скоро

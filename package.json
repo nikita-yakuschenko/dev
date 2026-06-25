@@ -8,8 +8,11 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
+    "test:ci": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "docs:sync": "npx tsx scripts/sync-docs.ts"
+    "docs:sync": "npx tsx scripts/sync-docs.ts",
+    "docker:build": "docker compose build",
+    "docker:up": "docker compose up -d --build"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

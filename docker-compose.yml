@@ -1,0 +1,48 @@
+# AVGST Dev Portal — Next.js на dev.avgst.ru
+# Локально: docker compose up -d --build → http://localhost:3055
+# Dokploy: Compose-приложение, порт сервиса 3055, volume portal_data для SQLite
+services:
+  portal:
+    build: .
+    ports:
+      - "3055:3055"
+    environment:
+      - NODE_ENV=production
+      - PORT=3055
+      - HOSTNAME=0.0.0.0
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-change-me}
+      - DOCS_DB_PATH=/app/data/docs.sqlite
+      - GATEWAY_BASE_URL=${GATEWAY_BASE_URL:-}
+      - MCP_URL=${MCP_URL:-https://mcp.avgst.ru/mcp}
+    volumes:
+      - portal_data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:3055/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=dokploy-network"
+      - "traefik.http.routers.avgst-dev-portal-web.rule=Host(`dev.avgst.ru`)"
+      - "traefik.http.routers.avgst-dev-portal-web.entrypoints=web"
+      - "traefik.http.routers.avgst-dev-portal-web.middlewares=redirect-to-https@file"
+      - "traefik.http.routers.avgst-dev-portal-web.service=avgst-dev-portal-web"
+      - "traefik.http.services.avgst-dev-portal-web.loadbalancer.server.port=3055"
+      - "traefik.http.routers.avgst-dev-portal-websecure.rule=Host(`dev.avgst.ru`)"
+      - "traefik.http.routers.avgst-dev-portal-websecure.entrypoints=websecure"
+      - "traefik.http.routers.avgst-dev-portal-websecure.service=avgst-dev-portal-websecure"
+      - "traefik.http.routers.avgst-dev-portal-websecure.tls.certresolver=letsencrypt"
+      - "traefik.http.services.avgst-dev-portal-websecure.loadbalancer.server.port=3055"
+    networks:
+      - default
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true
+
+volumes:
+  portal_data:

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   IconArrowRight,
@@ -7,6 +8,7 @@ import {
   IconServerCog,
 } from "@tabler/icons-react";
 
+import { JsonLd } from "@/components/json-ld";
 import { PortalShell } from "@/components/portal-shell";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -17,34 +19,56 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { buildPageMetadata } from "@/lib/seo/metadata";
+import { absoluteUrl } from "@/lib/seo/site";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Портал разработчика",
+  description:
+    "Документация HTTP API 1С УПП, правила интеграции и инженерные материалы AVGST.",
+  path: "/",
+});
 
 const portalCards = [
   {
     title: "Документация API 1С УПП",
-    description: "Обзор интеграции, правила работы, структура методов и шаблон контракта.",
+    description: "Обзор интеграции, контракт методов, параметры, примеры ответов и обработка ошибок.",
     href: "/api/1c-upp",
     icon: IconPlugConnected,
-    status: "Основной раздел",
+    status: "Опубликовано",
   },
   {
     title: "Авторизация и доступы",
-    description: "Где описываем токены, роли, сетевые ограничения и порядок выдачи доступа.",
+    description: "HTTP Basic, UTF-8, получение учётных данных и правила безопасного хранения секретов.",
     href: "/api/1c-upp/auth",
     icon: IconKey,
-    status: "Нужно заполнить",
+    status: "Опубликовано",
   },
   {
     title: "Окружения и стенды",
-    description: "Адреса dev/test/stage/prod, правила записи и владельцы доступности.",
+    description: "Назначение контуров dev, test, stage и prod, правила стабильности и smoke-проверок.",
     href: "/api/1c-upp/environments",
     icon: IconServerCog,
-    status: "Нужно подтвердить",
+    status: "Опубликовано",
   },
 ];
 
 export default function HomePage() {
   return (
     <PortalShell>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "AVGST Dev Portal",
+          url: absoluteUrl("/"),
+          hasPart: portalCards.map((card) => ({
+            "@type": "WebPage",
+            name: card.title,
+            url: absoluteUrl(card.href),
+          })),
+        }}
+      />
       <div className="flex flex-col gap-4">
         <section className="relative overflow-hidden rounded-4xl border border-border/70 bg-card/70 p-6 shadow-2xl shadow-primary/10 backdrop-blur md:p-8">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(56,189,248,0.22),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(16,185,129,0.14),transparent_30%)]" />
@@ -56,8 +80,8 @@ export default function HomePage() {
               Корпоративный dev-портал для API и инженерных материалов.
             </h1>
             <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
-              Современное рабочее пространство для документации, внутренних
-              интеграций и быстрых dev-сценариев. Начинаем с API 1С УПП.
+              Документация HTTP API 1С УПП для интеграторов: методы, авторизация,
+              окружения, примеры запросов и changelog.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg">

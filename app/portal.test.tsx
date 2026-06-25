@@ -46,7 +46,7 @@ describe("portal shell and pages", () => {
     expect(await screen.findByText("MCP online")).toBeInTheDocument();
     expect(screen.getByText("Internal Beta")).toBeInTheDocument();
     expect(screen.getByText("Поиск по документации скоро")).toBeInTheDocument();
-    expect(screen.getByText("UPP API Draft")).toBeInTheDocument();
+    expect(screen.getByText("API Docs")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Редактор" })).toHaveAttribute(
       "href",
       "/admin/docs",
@@ -88,13 +88,12 @@ describe("portal shell and pages", () => {
     render(<ApiCatalogPage />);
 
     expect(screen.getByRole("heading", { name: "Интеграции AVGST" })).toBeInTheDocument();
-    expect(screen.getByText("Активный старт")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Открыть документацию/i })).toHaveAttribute(
+    expect(screen.getByText("12 методов")).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: /Открыть/i })[0]).toHaveAttribute(
       "href",
       "/api/1c-upp",
     );
-    expect(screen.getByText("Доступы и политики")).toBeInTheDocument();
-    expect(screen.getByText("Журнал изменений")).toBeInTheDocument();
+    expect(screen.getByText("Changelog")).toBeInTheDocument();
   });
 
   it("renders the 1C UPP docs layout and local docs navigation", () => {
@@ -137,8 +136,11 @@ describe("portal shell and pages", () => {
       </RootLayout>,
     );
 
-    expect(metadata.title).toBe("dev.avgst");
-    expect(metadata.description).toContain("Корпоративный портал");
+    expect(metadata.title).toEqual({
+      default: "dev.avgst — портал разработчика AVGST",
+      template: "%s · dev.avgst",
+    });
+    expect(metadata.description).toContain("Документация HTTP API 1С УПП");
     expect(markup).toContain('lang="ru"');
     expect(markup).not.toContain('class="dark"');
     expect(markup).toContain("font-manrope");

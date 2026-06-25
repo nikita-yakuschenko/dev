@@ -1,11 +1,20 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { DocsNav } from "@/components/docs-nav";
 import { PortalShell } from "@/components/portal-shell";
 import { listDocs } from "@/lib/docs/repository";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "API 1С УПП",
+  description:
+    "Документация HTTP API 1С УПП: обзор, авторизация, окружения, методы и changelog.",
+  path: "/api/1c-upp",
+});
 
 export default function UppApiLayout({ children }: { children: ReactNode }) {
   const docsNav = listDocs();

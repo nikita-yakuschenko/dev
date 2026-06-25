@@ -11,6 +11,7 @@ import {
   IconServer,
 } from "@tabler/icons-react";
 
+import { docHref } from "@/lib/docs/routes";
 import { cn } from "@/lib/utils";
 import type { DocPage } from "@/lib/docs/types";
 
@@ -27,10 +28,6 @@ const slugIcons: Record<string, typeof IconBook2> = {
   methods: IconList,
   changelog: IconClock,
 };
-
-function docHref(slug: string) {
-  return slug === "overview" ? "/api/1c-upp" : `/api/1c-upp/${slug}`;
-}
 
 function buildNavGroups(docs: DocPage[]): NavGroup[] {
   const bySlug = new Map(docs.map((doc) => [doc.slug, doc]));

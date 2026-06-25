@@ -23,7 +23,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <Badge className="bg-emerald-500/12 text-emerald-700 hover:bg-emerald-500/18">
             <IconShieldCheck className="size-3" />
-            UPP API Draft
+            API Docs
           </Badge>
           <Button asChild variant="outline" size="sm" className="hidden sm:inline-flex">
             <Link href="/admin/docs">

@@ -35,7 +35,7 @@ const catalogCards = [
       "12 read-only методов: заказы, номенклатура, остатки, контрагенты, health check и общие правила контракта.",
     href: "/api/1c-upp",
     icon: IconPlugConnected,
-    badge: "12 методов",
+    badge: "13 методов",
     primary: true,
   },
   {

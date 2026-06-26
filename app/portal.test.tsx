@@ -87,7 +87,7 @@ describe("portal shell and pages", () => {
     expect(
       screen.getByRole("heading", { name: /API для разработки продуктов/i }),
     ).toBeInTheDocument();
-    expect(screen.getByText("12 методов")).toBeInTheDocument();
+    expect(screen.getByText("13 методов")).toBeInTheDocument();
     expect(screen.getAllByRole("link", { name: /Открыть/i })[0]).toHaveAttribute(
       "href",
       "/api/1c-upp",

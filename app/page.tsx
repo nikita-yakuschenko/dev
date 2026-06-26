@@ -25,14 +25,15 @@ import { absoluteUrl } from "@/lib/seo/site";
 export const metadata: Metadata = buildPageMetadata({
   title: "Портал разработчика",
   description:
-    "Документация HTTP API 1С УПП, правила интеграции и инженерные материалы AVGST.",
+    "Dev-портал AVGST: документация HTTP API, окружения и материалы для разработки продуктов.",
   path: "/",
 });
 
 const portalCards = [
   {
     title: "Документация API 1С УПП",
-    description: "Обзор интеграции, контракт методов, параметры, примеры ответов и обработка ошибок.",
+    description:
+      "Контракт методов, параметры, примеры ответов и обработка ошибок — для разработки продуктов на данных 1С.",
     href: "/api/1c-upp",
     icon: IconPlugConnected,
     status: "Опубликовано",
@@ -69,19 +70,19 @@ export default function HomePage() {
           })),
         }}
       />
-      <div className="flex flex-col gap-4">
-        <section className="relative overflow-hidden rounded-4xl border border-border/70 bg-card/70 p-6 shadow-2xl shadow-primary/10 backdrop-blur md:p-8">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(56,189,248,0.22),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(16,185,129,0.14),transparent_30%)]" />
+      <div className="flex flex-col gap-6">
+        <section className="portal-hero">
           <div className="relative max-w-4xl">
             <Badge variant="outline" className="mb-4 border-primary/30 text-primary">
               dev.avgst.ru · AVGST engineering
             </Badge>
-            <h1 className="text-3xl font-semibold tracking-tight sm:text-5xl">
-              Корпоративный dev-портал для API и инженерных материалов.
+            <h1 className="text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
+              Dev-портал для{" "}
+              <span className="text-primary">разработки продуктов</span> AVGST.
             </h1>
-            <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
-              Документация HTTP API 1С УПП для интеграторов: методы, авторизация,
-              окружения, примеры запросов и changelog.
+            <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
+              Документация HTTP API, правила доступа, окружения и инженерные материалы команды —
+              всё, что нужно при создании и сопровождении продуктов.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg">
@@ -104,11 +105,11 @@ export default function HomePage() {
           {portalCards.map((card) => (
             <Card
               key={card.href}
-              className="group border-border/70 bg-card/65 transition hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10"
+              className="group border-border/80 bg-card transition duration-200 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-lg hover:shadow-primary/8"
             >
               <CardHeader>
                 <div className="mb-3 flex items-center justify-between">
-                  <div className="flex size-11 items-center justify-center rounded-xl bg-primary/12 text-primary">
+                  <div className="flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     <card.icon className="size-5" />
                   </div>
                   <Badge variant="outline">{card.status}</Badge>

@@ -35,7 +35,7 @@ export default function UppApiLayout({ children }: { children: ReactNode }) {
           <DocsNav docs={docsNav} />
         </aside>
 
-        <article className="min-w-0 w-full rounded-2xl border border-border/70 bg-card/80 p-6 shadow-sm md:p-8">
+        <article className="min-w-0 w-full rounded-2xl border border-border/80 bg-card p-6 shadow-sm md:p-8">
           <div className="docs-content">{children}</div>
         </article>
       </div>

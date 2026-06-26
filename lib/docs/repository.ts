@@ -51,6 +51,8 @@ export function listDocs(section = "1c-upp") {
   return rows.map(mapDoc);
 }
 
+import { searchDocsRanked } from "@/lib/docs/search-results";
+
 export function searchDocs(query: string, section = "1c-upp") {
   const trimmedQuery = query.trim();
 
@@ -58,24 +60,7 @@ export function searchDocs(query: string, section = "1c-upp") {
     return listDocs(section);
   }
 
-  const likeQuery = `%${trimmedQuery}%`;
-  const rows = getDocsDb()
-    .prepare(
-      `
-      SELECT * FROM docs_pages
-      WHERE section = ?
-        AND (
-          title LIKE ?
-          OR slug LIKE ?
-          OR nav_title LIKE ?
-          OR content LIKE ?
-        )
-      ORDER BY sort_order ASC, title ASC
-    `,
-    )
-    .all(section, likeQuery, likeQuery, likeQuery, likeQuery) as DocRow[];
-
-  return rows.map(mapDoc);
+  return searchDocsRanked(trimmedQuery, section, 100).map((result) => result.doc);
 }
 
 export function getDocBySlug(slug: string, section = "1c-upp") {

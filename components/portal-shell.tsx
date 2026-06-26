@@ -8,9 +8,7 @@ export function PortalShell({ children }: { children: React.ReactNode }) {
       <div className="flex h-svh min-w-0 flex-col overflow-hidden">
         <SiteHeader />
         <main className="min-h-0 flex-1 overflow-y-auto">
-          <div className="w-full px-4 py-4 sm:px-6 lg:px-8">
-            {children}
-          </div>
+          <div className="w-full px-4 py-4 sm:px-6 lg:px-8">{children}</div>
         </main>
       </div>
     </div>

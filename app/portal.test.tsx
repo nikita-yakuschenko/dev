@@ -17,15 +17,14 @@ describe("portal shell and pages", () => {
   it("renders the AVGST sidebar navigation", () => {
     render(<AppSidebar />);
 
-    expect(screen.getByText("AVGST Dev")).toBeInTheDocument();
+    expect(screen.getByText("dev.avgst")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Обзор" })).toHaveAttribute("href", "/");
     expect(screen.getByText("Каталог API")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "1С УПП" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "API 1С УПП" })).toHaveAttribute(
       "href",
       "/api/1c-upp",
     );
-    expect(screen.queryByRole("link", { name: "Редактор документации" })).not.toBeInTheDocument();
-    expect(screen.queryByText("Внутренний портал")).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Все API" })).not.toBeInTheDocument();
   });
 
   it("renders the sticky header with status and action", async () => {
@@ -44,14 +43,11 @@ describe("portal shell and pages", () => {
     render(<SiteHeader />);
 
     expect(await screen.findByText("MCP online")).toBeInTheDocument();
-    expect(screen.getByText("Internal Beta")).toBeInTheDocument();
-    expect(screen.getByText("Поиск по документации скоро")).toBeInTheDocument();
-    expect(screen.getByText("API Docs")).toBeInTheDocument();
+    expect(screen.getByRole("combobox", { name: "Поиск по документации" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Редактор" })).toHaveAttribute(
       "href",
       "/admin/docs",
     );
-    expect(screen.queryByRole("button", { name: "Предложить метод" })).not.toBeInTheDocument();
 
     vi.unstubAllGlobals();
   });
@@ -63,16 +59,17 @@ describe("portal shell and pages", () => {
       </PortalShell>,
     );
 
-    expect(screen.getByText("AVGST Dev")).toBeInTheDocument();
+    expect(screen.getByTestId("portal-shell")).toBeInTheDocument();
+    expect(screen.getByText("dev.avgst")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Inner portal content" })).toBeInTheDocument();
   });
 
-  it("renders the home page with hero, stats and portal cards", () => {
+  it("renders the home page with hero and portal cards", () => {
     render(<HomePage />);
 
     expect(
       screen.getByRole("heading", {
-        name: "Корпоративный dev-портал для API и инженерных материалов.",
+        name: /Dev-портал для разработки продуктов AVGST/i,
       }),
     ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Открыть API 1С УПП/i })).toHaveAttribute(
@@ -87,7 +84,9 @@ describe("portal shell and pages", () => {
   it("renders the API catalog page", () => {
     render(<ApiCatalogPage />);
 
-    expect(screen.getByRole("heading", { name: "Интеграции AVGST" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /API для разработки продуктов/i }),
+    ).toBeInTheDocument();
     expect(screen.getByText("12 методов")).toBeInTheDocument();
     expect(screen.getAllByRole("link", { name: /Открыть/i })[0]).toHaveAttribute(
       "href",
@@ -104,7 +103,7 @@ describe("portal shell and pages", () => {
     );
 
     expect(screen.getByRole("link", { name: "Каталог API" })).toBeInTheDocument();
-    expect(screen.getByText("Документация")).toBeInTheDocument();
+    expect(screen.getAllByText("Документация").length).toBeGreaterThan(0);
     expect(screen.getByRole("link", { name: "Авторизация" })).toHaveAttribute(
       "href",
       "/api/1c-upp/auth",
@@ -140,7 +139,7 @@ describe("portal shell and pages", () => {
       default: "dev.avgst — портал разработчика AVGST",
       template: "%s · dev.avgst",
     });
-    expect(metadata.description).toContain("Документация HTTP API 1С УПП");
+    expect(metadata.description).toContain("разработки продуктов");
     expect(markup).toContain('lang="ru"');
     expect(markup).not.toContain('class="dark"');
     expect(markup).toContain("font-manrope");

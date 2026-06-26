@@ -24,7 +24,7 @@ import { absoluteUrl } from "@/lib/seo/site";
 export const metadata: Metadata = buildPageMetadata({
   title: "Каталог API",
   description:
-    "Каталог интеграций AVGST: документация HTTP API 1С УПП, авторизация, окружения и changelog.",
+    "Каталог HTTP API AVGST для разработки продуктов: документация 1С УПП, авторизация и changelog.",
   path: "/api",
 });
 
@@ -73,16 +73,20 @@ export default function ApiCatalogPage() {
         }}
       />
       <div className="flex flex-col gap-6">
-        <div>
-          <Badge variant="outline" className="mb-4 border-primary/30 text-primary">
-            API каталог
-          </Badge>
-          <h1 className="text-4xl font-semibold tracking-tight">Интеграции AVGST</h1>
-          <p className="mt-3 max-w-2xl text-muted-foreground">
-            Публичная документация внутренних HTTP API: назначение методов, правила
-            доступа, окружения и история изменений контрактов.
-          </p>
-        </div>
+        <section className="portal-hero">
+          <div className="relative max-w-4xl">
+            <Badge variant="outline" className="mb-4 border-primary/30 text-primary">
+              API каталог
+            </Badge>
+            <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+              API для <span className="text-primary">разработки продуктов</span>
+            </h1>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-muted-foreground">
+              Внутренняя документация HTTP API: назначение методов, правила доступа, окружения
+              и история изменений контрактов.
+            </p>
+          </div>
+        </section>
 
         <div className="grid gap-4 lg:grid-cols-3">
           {catalogCards.map((card) => (
@@ -90,13 +94,13 @@ export default function ApiCatalogPage() {
               key={card.href}
               className={
                 card.primary
-                  ? "border-primary/30 bg-card/75 shadow-xl shadow-primary/5"
-                  : "border-border/70 bg-card/55"
+                  ? "border-primary/30 bg-card shadow-md shadow-primary/5 transition hover:-translate-y-0.5 hover:shadow-lg"
+                  : "border-border/80 bg-card transition hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md"
               }
             >
               <CardHeader>
                 <div className="mb-3 flex items-center justify-between">
-                  <div className="flex size-11 items-center justify-center rounded-xl bg-primary/12 text-primary">
+                  <div className="flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     <card.icon className="size-5" />
                   </div>
                   <Badge variant={card.primary ? "default" : "outline"}>{card.badge}</Badge>

@@ -2,13 +2,13 @@ export const SITE_URL = "https://dev.avgst.ru";
 export const SITE_NAME = "dev.avgst";
 export const SITE_TITLE = "dev.avgst — портал разработчика AVGST";
 export const SITE_DESCRIPTION =
-  "Документация HTTP API 1С УПП, правила интеграции, методы, авторизация и changelog для команды AVGST.";
+  "Dev-портал AVGST: документация HTTP API, методы, авторизация и changelog для разработки продуктов.";
 export const SITE_LOCALE = "ru_RU";
 export const SITE_KEYWORDS = [
   "AVGST",
   "1С УПП",
   "HTTP API",
-  "интеграция",
+  "разработка продуктов",
   "документация API",
   "dev.avgst",
 ];

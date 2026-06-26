@@ -1,0 +1,24 @@
+# REST Client (VS Code / Cursor): расширение "REST Client" (humao.rest-client)
+# Учётки — в .env локально, не коммитить. Подставь свои значения ниже.
+
+@base = https://gateway.avgst.ru
+@moduleUser = Администратор
+@modulePass = YOUR_MODULE_TEAM_PASSWORD
+@mainUser = Никита Якущенко
+@mainPass = YOUR_MAIN_PASSWORD
+
+### module.team — поставщики
+GET {{base}}/module.team/hs/suppliers/get
+Authorization: Basic {{moduleUser}} {{modulePass}}
+
+### module.team — поступления (всегда с периодом!)
+GET {{base}}/module.team/hs/receipts/get?from=01.02.2025&to=28.02.2025
+Authorization: Basic {{moduleUser}} {{modulePass}}
+
+### module.team — поступления с фильтрами
+GET {{base}}/module.team/hs/receipts/get?date=10.02.2025&contractor=ПРОКРЕПЕЖ-ОПТ%20ООО&org=АС%20Каркас
+Authorization: Basic {{moduleUser}} {{modulePass}}
+
+### main — поставщики (другая учётка)
+GET {{base}}/main/hs/suppliers/get
+Authorization: Basic {{mainUser}} {{mainPass}}

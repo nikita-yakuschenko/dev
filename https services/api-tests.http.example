@@ -1,10 +1,12 @@
-# REST Client (VS Code / Cursor): расширение "REST Client" (humao.rest-client)
-# Учётки — в .env локально, не коммитить. Подставь свои значения ниже.
+# REST Client (VS Code / Cursor): humao.rest-client
+# Скопируй в api-tests.http (локально, не коммитить):
+#   Copy-Item "https services/api-tests.http.example" "https services/api-tests.http"
+# Пароли — из .env или вручную в @modulePass / @mainPass.
 
 @base = https://gateway.avgst.ru
 @moduleUser = Администратор
 @modulePass = YOUR_MODULE_TEAM_PASSWORD
-@mainUser = Никита Якущенко
+@mainUser = YOUR_MAIN_USER
 @mainPass = YOUR_MAIN_PASSWORD
 
 ### module.team — поставщики
@@ -15,10 +17,10 @@ Authorization: Basic {{moduleUser}} {{modulePass}}
 GET {{base}}/module.team/hs/receipts/get?from=01.02.2025&to=28.02.2025
 Authorization: Basic {{moduleUser}} {{modulePass}}
 
-### module.team — поступления с фильтрами
-GET {{base}}/module.team/hs/receipts/get?date=10.02.2025&contractor=ПРОКРЕПЕЖ-ОПТ%20ООО&org=АС%20Каркас
+### module.team — cashflows
+GET {{base}}/module.team/hs/cashflows/get?from=01.02.2025&to=28.02.2025&totals=true
 Authorization: Basic {{moduleUser}} {{modulePass}}
 
-### main — поставщики (другая учётка)
+### main — поставщики
 GET {{base}}/main/hs/suppliers/get
 Authorization: Basic {{mainUser}} {{mainPass}}

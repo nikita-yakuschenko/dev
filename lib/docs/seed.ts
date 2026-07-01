@@ -436,6 +436,8 @@ GET /main/hs/sorders/get
 | Параметр | Тип | Описание |
 |----------|-----|----------|
 | \`supplier\` | string | Подстрока в наименовании контрагента (поставщика) |
+| \`contractor\` | string | Алиас для \`supplier\` |
+| \`contactor\` | string | Алиас для \`supplier\`, поддерживается для запросов с опечаткой |
 | \`org\` | string | Подстрока в наименовании организации |
 | \`warehouse\` | string | Подстрока в складе |
 | \`responsible\` | string | Подстрока в ответственном |
@@ -462,6 +464,7 @@ GET /main/hs/sorders/get
 GET /main/hs/sorders/get?code=ЗК-00002015
 GET /main/hs/sorders/get?from=01.01.2024&to=31.12.2024
 GET /main/hs/sorders/get?supplier=Пример&approved=true
+GET /main/hs/sorders/get?contactor=Едемская
 GET /main/hs/sorders/get?warehouse=Северный&summ=250000
 GET /main/hs/sorders/get?code=ЗК-00002015&full=true
 \`\`\`
@@ -598,8 +601,8 @@ GET /main/hs/sorders/get?code=ЗК-00002015&full=true
 
 ## Примечания
 
-- В отличие от заказов покупателей, фильтр контрагента называется \`supplier\`, а не \`customer\`.
-- Нет фильтров по договору и ИНН — только \`supplier\` по наименованию.
+- Основное имя фильтра контрагента — \`supplier\`; \`contractor\` и \`contactor\` работают как алиасы.
+- Нет фильтров по договору и ИНН — только поиск по наименованию контрагента.
 - \`СвязанныеДокументы\` всегда возвращается со структурой-заготовкой (\`Есть: false\`, \`Количество: 0\`).
 - Без \`full\` вложения — сводка \`{ Есть, Количество }\`; с \`full=true\` — массив файлов из хранилища доп. информации.
 - Без параметров возвращаются все заказы поставщикам (с учётом прав публикации 1С).
@@ -1013,6 +1016,8 @@ GET /main/hs/receipts/get
 | Параметр | Тип | Описание |
 |----------|-----|----------|
 | \`contractor\` | string | Подстрока в наименовании контрагента |
+| \`contactor\` | string | Алиас для \`contractor\`, поддерживается для запросов с опечаткой |
+| \`supplier\` | string | Алиас для \`contractor\`, поддерживается как термин «поставщик» |
 | \`org\` | string | Подстрока в наименовании организации |
 | \`warehouse\` | string | Подстрока в складе (\`СкладОрдер\`) |
 | \`responsible\` | string | Подстрока в ответственном |
@@ -1038,6 +1043,7 @@ GET /main/hs/receipts/get
 GET /main/hs/receipts/get?from=01.01.2025&to=31.01.2025
 GET /main/hs/receipts/get?code=ПТ-00001001
 GET /main/hs/receipts/get?contractor=ООО&warehouse=Северный&approved=true
+GET /main/hs/receipts/get?supplier=ООО
 GET /main/hs/receipts/get?date=15.03.2025&summ=125000
 GET /main/hs/receipts/get?code=ПТ-00001001&full=true
 \`\`\`

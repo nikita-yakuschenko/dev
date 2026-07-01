@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { DocsNav } from "@/components/docs-nav";
@@ -44,7 +44,7 @@ const sampleDocs: DocPage[] = [
     slug: "methods/morders-get",
     section: "1c-upp",
     navTitle: "Заказы на производство",
-    order: 45,
+    order: 500,
     content: "",
     createdAt: "",
     updatedAt: "",
@@ -63,25 +63,37 @@ const sampleDocs: DocPage[] = [
 ];
 
 describe("DocsNav", () => {
-  it("renders grouped navigation with section labels", () => {
+  it("renders documentation and collapsible method sections", () => {
     render(<DocsNav docs={sampleDocs} />);
 
     expect(screen.getByText("Документация")).toBeInTheDocument();
-    expect(screen.getByText("Методы")).toBeInTheDocument();
-    expect(screen.getByText("История")).toBeInTheDocument();
+    expect(screen.getByText("Производство")).toBeInTheDocument();
+    expect(screen.getByText("Список методов")).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Список методов" })).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "Производство" }));
+
     expect(screen.getByRole("link", { name: "Заказы на производство" })).toHaveAttribute(
       "href",
       "/api/1c-upp/methods/morders-get",
     );
   });
 
+  it("collapses method categories", () => {
+    render(<DocsNav docs={sampleDocs} />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Производство" }));
+    expect(screen.getByRole("link", { name: "Заказы на производство" })).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "Производство" }));
+
+    expect(screen.queryByRole("link", { name: "Заказы на производство" })).not.toBeInTheDocument();
+  });
+
   it("marks only the exact matching page as active", () => {
     render(<DocsNav docs={sampleDocs} />);
 
     expect(screen.getByRole("link", { name: "Обзор" })).toHaveAttribute("aria-current", "page");
-    expect(screen.getByRole("link", { name: "Список методов" })).not.toHaveAttribute("aria-current");
-    expect(screen.getByRole("link", { name: "Заказы на производство" })).not.toHaveAttribute(
-      "aria-current",
-    );
+    expect(screen.getByRole("link", { name: "Changelog" })).not.toHaveAttribute("aria-current");
   });
 });

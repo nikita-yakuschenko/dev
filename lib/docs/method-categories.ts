@@ -122,6 +122,13 @@ export const METHOD_CATALOG: Record<MethodCategoryId, MethodCatalogEntry[]> = {
       docTitle: "Получить остатки товаров",
     },
     {
+      slug: "methods/stockbalances-get",
+      navTitle: "Стоимость остатков",
+      service: "stockbalances",
+      endpoint: "GET /main/hs/stockbalances/get",
+      docTitle: "Получить стоимость остатков товаров",
+    },
+    {
       slug: "methods/transfers-get",
       navTitle: "Перемещения товаров",
       service: "transfers",

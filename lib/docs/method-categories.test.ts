@@ -13,7 +13,7 @@ describe("method-categories", () => {
       entries.map((entry) => entry.slug),
     );
 
-    expect(slugs).toHaveLength(14);
+    expect(slugs).toHaveLength(15);
     for (const slug of slugs) {
       expect(getMethodCategoryId(slug)).toBeTruthy();
     }
@@ -38,6 +38,7 @@ describe("method-categories", () => {
     expect(markdown).toContain("## Финансы");
     expect(markdown).toContain("## Склад");
     expect(markdown).toContain("Получить поступления товаров и услуг");
+    expect(markdown).toContain("Получить стоимость остатков товаров");
     expect(markdown).not.toContain("## Заказы на производство");
   });
 });

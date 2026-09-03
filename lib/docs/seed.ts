@@ -856,6 +856,7 @@ GET /main/hs/cashflows/get
 | \`account\` | string | \`СчетКасса\` | Подстрока в представлении счёта / кассы |
 | \`cash\` | string | \`СчетКасса\` | То же, что \`account\` |
 | \`bank\` | string | \`Банк\` | Подстрока в наименовании банка |
+| \`accountNo\` | string | \`НомерСчета\` | Подстрока в номере банковского счёта. У касс номера нет, поэтому они фильтр не проходят |
 | \`kind\` | string | \`ВидДенежныхСредств\` | \`Наличные\` или \`Безналичные\`. Учитывает коллизию подстрок: \`наличные\` не попадает в безналичные; \`без...\` - только безналичные |
 | \`accountType\` | string | \`ВидСчета\` | Подстрока: \`Расчетный\`, \`Иной\` и т.д. |
 | \`currency\` | string | \`Валюта\` | Подстрока в валюте счёта / кассы |
@@ -890,6 +891,7 @@ GET /main/hs/cashflows/get?from=01.02.2025&to=28.02.2025&closed=false
 GET /main/hs/cashflows/get?from=01.02.2025&to=28.02.2025&totals=true
 GET /main/hs/cashflows/get?date=15.02.2025
 GET /main/hs/cashflows/get?org=Демо&bank=СБЕР&kind=Безналичные
+GET /main/hs/cashflows/get?accountNo=40702810
 GET /main/hs/cashflows/get?closed=true&org=Калякин&accountType=Расчетный
 GET /main/hs/cashflows/get?from=01.02.2025&to=28.02.2025&mgmt=true&totals=true
 \`\`\`

@@ -32,6 +32,7 @@ GET /main/hs/cashflows/get
 | `account` | строка | Подстрока в счете или кассе. |
 | `cash` | строка | Подстрока в счете или кассе, с тем же смыслом, что `account`. |
 | `bank` | строка | Подстрока в банке. |
+| `accountNo` | строка | Подстрока в номере банковского счета. Кассы не проходят фильтр. |
 | `kind` | строка | Вид денежных средств: наличные, безналичные или подстрока в представлении. |
 | `accountType` | строка | Подстрока в виде счета. |
 | `currency` | строка | Подстрока в валюте. |
@@ -69,5 +70,6 @@ GET /main/hs/cashflows/get
 GET /main/hs/cashflows/get?from=01.02.2025&to=28.02.2025
 GET /main/hs/cashflows/get?date=15.02.2025
 GET /main/hs/cashflows/get?org=Демо&bank=СБЕР&kind=Безналичные
+GET /main/hs/cashflows/get?accountNo=40702810
 GET /main/hs/cashflows/get?from=01.02.2025&to=28.02.2025&mgmt=true&totals=true
 ```

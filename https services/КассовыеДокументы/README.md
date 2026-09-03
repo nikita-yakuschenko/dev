@@ -1,10 +1,10 @@
-# Кассовые документы (GetCashDocuments)
+# Кассовые документы (GetCashOrders)
 
 HTTP-сервис объединяет в одну выборку приходные и расходные кассовые ордера и возвращает по каждому документу шапку, а при `full=true` - **все реквизиты шапки и все табличные части построчно** в виде пар ключ-значение.
 
-**HTTP-сервис:** `cashdocs`
+**HTTP-сервис:** `cashorders`
 **Метод:** `get`
-**Функция в конфигураторе:** `GetCashDocuments`
+**Функция в конфигураторе:** `GetCashOrders`
 
 Состав документов:
 
@@ -23,7 +23,7 @@ HTTP-сервис объединяет в одну выборку приходн
 ## Endpoint
 
 ```http
-GET /main/hs/cashdocs/get
+GET /main/hs/cashorders/get
 ```
 
 ## Параметры
@@ -87,12 +87,12 @@ GET /main/hs/cashdocs/get
 ## Примеры
 
 ```http
-GET /main/hs/cashdocs/get
-GET /main/hs/cashdocs/get?from=01.02.2025&to=28.02.2025
-GET /main/hs/cashdocs/get?date=15.02.2025&full=true
-GET /main/hs/cashdocs/get?type=ПриходныйКассовыйОрдер&approved=true
-GET /main/hs/cashdocs/get?org=Демо&summ=15000
-GET /main/hs/cashdocs/get?code=00-000123&full=true
+GET /main/hs/cashorders/get
+GET /main/hs/cashorders/get?from=01.02.2025&to=28.02.2025
+GET /main/hs/cashorders/get?date=15.02.2025&full=true
+GET /main/hs/cashorders/get?type=ПриходныйКассовыйОрдер&approved=true
+GET /main/hs/cashorders/get?org=Демо&summ=15000
+GET /main/hs/cashorders/get?code=00-000123&full=true
 ```
 
 ## Пример ответа с `full=true`

@@ -70,8 +70,8 @@ GET <базовый_URL>/warehouses/get?code=01&name=Основной
 | Номенклатура | materials | get | GetMaterials | [Номенклатура/README.md](Номенклатура/README.md) |
 | СпецификацииНоменклатуры | specifications | get | GetSpecifications | [СпецификацииНоменклатуры/README.md](СпецификацииНоменклатуры/README.md) |
 | ПартииТоваровНаСкладах | stockbalances | get | GetStockBalances | [ПартииТоваровНаСкладах/README.md](ПартииТоваровНаСкладах/README.md) |
-| КассовыеДокументы | cashdocs | get | GetCashDocuments | [КассовыеДокументы/README.md](КассовыеДокументы/README.md) |
-| БанковскиеДокументы | bankdocs | get | GetBankDocuments | [БанковскиеДокументы/README.md](БанковскиеДокументы/README.md) |
+| КассовыеДокументы | cashorders | get | GetCashOrders | [КассовыеДокументы/README.md](КассовыеДокументы/README.md) |
+| БанковскиеДокументы | bankpayments | get | GetBankPayments | [БанковскиеДокументы/README.md](БанковскиеДокументы/README.md) |
 
 Итоговый URL для вызова, например, справочника складов: **`<базовый_URL>/warehouses/get`** (с опциональными query-параметрами). Имена сервисов и методов в вашей конфигурации могут отличаться — они задаются при настройке HTTP-сервисов в 1С; в коде важно привязать путь к нужной экспортной функции.
 

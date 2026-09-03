@@ -2443,15 +2443,15 @@ export const changelogDoc: DocInput = {
 };
 
 
-export const cashdocsGetDoc: DocInput = {
+export const cashordersGetDoc: DocInput = {
   title: "Получить кассовые документы",
-  slug: "methods/cashdocs-get",
+  slug: "methods/cashorders-get",
   section: "1c-upp",
   navTitle: "Кассовые документы",
   order: 202,
   content: `# Получить кассовые документы
 
-HTTP-сервис \`cashdocs\`, метод \`GetCashDocuments\`. Возвращает **кассовые документы** одной выборкой: приходные и расходные кассовые ордера.
+HTTP-сервис \`cashorders\`, метод \`GetCashOrders\`. Возвращает **кассовые документы** одной выборкой: приходные и расходные кассовые ордера.
 
 Состав документов:
 
@@ -2463,7 +2463,7 @@ HTTP-сервис \`cashdocs\`, метод \`GetCashDocuments\`. Возвращ�
 ## Endpoint
 
 \`\`\`http
-GET /main/hs/cashdocs/get
+GET /main/hs/cashorders/get
 \`\`\`
 
 ## Параметры запроса
@@ -2505,12 +2505,12 @@ GET /main/hs/cashdocs/get
 ## Примеры запросов
 
 \`\`\`http
-GET /main/hs/cashdocs/get
-GET /main/hs/cashdocs/get?from=01.02.2025&to=28.02.2025
-GET /main/hs/cashdocs/get?date=15.02.2025&full=true
-GET /main/hs/cashdocs/get?type=ПриходныйКассовыйОрдер&approved=true
-GET /main/hs/cashdocs/get?org=Демо&summ=15000
-GET /main/hs/cashdocs/get?code=00-000123&full=true
+GET /main/hs/cashorders/get
+GET /main/hs/cashorders/get?from=01.02.2025&to=28.02.2025
+GET /main/hs/cashorders/get?date=15.02.2025&full=true
+GET /main/hs/cashorders/get?type=ПриходныйКассовыйОрдер&approved=true
+GET /main/hs/cashorders/get?org=Демо&summ=15000
+GET /main/hs/cashorders/get?code=00-000123&full=true
 \`\`\`
 
 ## Формат ответа
@@ -2614,15 +2614,15 @@ GET /main/hs/cashdocs/get?code=00-000123&full=true
 `,
 };
 
-export const bankdocsGetDoc: DocInput = {
+export const bankpaymentsGetDoc: DocInput = {
   title: "Получить банковские документы",
-  slug: "methods/bankdocs-get",
+  slug: "methods/bankpayments-get",
   section: "1c-upp",
   navTitle: "Банковские документы",
   order: 203,
   content: `# Получить банковские документы
 
-HTTP-сервис \`bankdocs\`, метод \`GetBankDocuments\`. Возвращает **банковские документы** одной выборкой: платёжные поручения (входящие и исходящие) и платёжные ордера.
+HTTP-сервис \`bankpayments\`, метод \`GetBankPayments\`. Возвращает **банковские документы** одной выборкой: платёжные поручения (входящие и исходящие) и платёжные ордера.
 
 Состав документов:
 
@@ -2636,7 +2636,7 @@ HTTP-сервис \`bankdocs\`, метод \`GetBankDocuments\`. Возвращ�
 ## Endpoint
 
 \`\`\`http
-GET /main/hs/bankdocs/get
+GET /main/hs/bankpayments/get
 \`\`\`
 
 ## Параметры запроса
@@ -2678,12 +2678,12 @@ GET /main/hs/bankdocs/get
 ## Примеры запросов
 
 \`\`\`http
-GET /main/hs/bankdocs/get
-GET /main/hs/bankdocs/get?from=01.02.2025&to=28.02.2025
-GET /main/hs/bankdocs/get?date=15.02.2025&full=true
-GET /main/hs/bankdocs/get?type=ПлатежноеПоручениеВходящее&approved=true
-GET /main/hs/bankdocs/get?org=Демо&summ=15000
-GET /main/hs/bankdocs/get?code=00-000123&full=true
+GET /main/hs/bankpayments/get
+GET /main/hs/bankpayments/get?from=01.02.2025&to=28.02.2025
+GET /main/hs/bankpayments/get?date=15.02.2025&full=true
+GET /main/hs/bankpayments/get?type=ПлатежноеПоручениеВходящее&approved=true
+GET /main/hs/bankpayments/get?org=Демо&summ=15000
+GET /main/hs/bankpayments/get?code=00-000123&full=true
 \`\`\`
 
 ## Формат ответа
@@ -2798,8 +2798,8 @@ export const syncableDocs: DocInput[] = [
   sordersGetDoc,
   paymentsGetDoc,
   cashflowsGetDoc,
-  cashdocsGetDoc,
-  bankdocsGetDoc,
+  cashordersGetDoc,
+  bankpaymentsGetDoc,
   receiptsGetDoc,
   materialsGetDoc,
   transfersGetDoc,
@@ -2824,8 +2824,8 @@ export const seedDocs: DocInput[] = [
   sordersGetDoc,
   paymentsGetDoc,
   cashflowsGetDoc,
-  cashdocsGetDoc,
-  bankdocsGetDoc,
+  cashordersGetDoc,
+  bankpaymentsGetDoc,
   receiptsGetDoc,
   materialsGetDoc,
   transfersGetDoc,

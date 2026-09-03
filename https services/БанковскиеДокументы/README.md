@@ -1,10 +1,10 @@
-# Банковские документы (GetBankDocuments)
+# Банковские документы (GetBankPayments)
 
 HTTP-сервис объединяет в одну выборку платёжные поручения (входящие и исходящие) и платёжные ордера и возвращает по каждому документу шапку, а при `full=true` - **все реквизиты шапки и все табличные части построчно** в виде пар ключ-значение.
 
-**HTTP-сервис:** `bankdocs`
+**HTTP-сервис:** `bankpayments`
 **Метод:** `get`
-**Функция в конфигураторе:** `GetBankDocuments`
+**Функция в конфигураторе:** `GetBankPayments`
 
 Состав документов:
 
@@ -25,7 +25,7 @@ HTTP-сервис объединяет в одну выборку платёжн
 ## Endpoint
 
 ```http
-GET /main/hs/bankdocs/get
+GET /main/hs/bankpayments/get
 ```
 
 ## Параметры
@@ -89,12 +89,12 @@ GET /main/hs/bankdocs/get
 ## Примеры
 
 ```http
-GET /main/hs/bankdocs/get
-GET /main/hs/bankdocs/get?from=01.02.2025&to=28.02.2025
-GET /main/hs/bankdocs/get?date=15.02.2025&full=true
-GET /main/hs/bankdocs/get?type=ПлатежноеПоручениеВходящее&approved=true
-GET /main/hs/bankdocs/get?org=Демо&summ=15000
-GET /main/hs/bankdocs/get?code=00-000123&full=true
+GET /main/hs/bankpayments/get
+GET /main/hs/bankpayments/get?from=01.02.2025&to=28.02.2025
+GET /main/hs/bankpayments/get?date=15.02.2025&full=true
+GET /main/hs/bankpayments/get?type=ПлатежноеПоручениеВходящее&approved=true
+GET /main/hs/bankpayments/get?org=Демо&summ=15000
+GET /main/hs/bankpayments/get?code=00-000123&full=true
 ```
 
 ## Пример ответа с `full=true`

@@ -6,3 +6,4 @@ node_modules/
 !.env.example
 https services/api-tests.http
 data/
+tsconfig.tsbuildinfo

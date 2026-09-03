@@ -13,7 +13,7 @@ describe("method-categories", () => {
       entries.map((entry) => entry.slug),
     );
 
-    expect(slugs).toHaveLength(15);
+    expect(slugs).toHaveLength(17);
     for (const slug of slugs) {
       expect(getMethodCategoryId(slug)).toBeTruthy();
     }

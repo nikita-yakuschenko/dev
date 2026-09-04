@@ -50,6 +50,20 @@ export const METHOD_CATALOG: Record<MethodCategoryId, MethodCatalogEntry[]> = {
       endpoint: "GET /main/hs/payments/get",
       docTitle: "Получить заявки на расходование средств",
     },
+    {
+      slug: "methods/cashorders-get",
+      navTitle: "Кассовые документы",
+      service: "cashorders",
+      endpoint: "GET /main/hs/cashorders/get",
+      docTitle: "Получить кассовые документы",
+    },
+    {
+      slug: "methods/bankpayments-get",
+      navTitle: "Банковские документы",
+      service: "bankpayments",
+      endpoint: "GET /main/hs/bankpayments/get",
+      docTitle: "Получить банковские документы",
+    },
   ],
   sales: [
     {
